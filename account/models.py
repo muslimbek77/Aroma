@@ -16,3 +16,18 @@ class User(AbstractUser):
         return f"{self.username} {self.phone_number}"
 
 
+class Address(models.Model):
+    title = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="adresses")
+    country = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    street = models.CharField(max_length=255)
+    is_default = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Adress"
+        verbose_name_plural = "Adresses"
+    
+    def __str__(self):
+        return f"{self.title} {self.user}"
+
