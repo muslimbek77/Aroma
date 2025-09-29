@@ -4,8 +4,8 @@ from .forms import ContactForm
 def home_page(request):
     return render(request=request,template_name="index.html")
 
-def blog_page(request):
-    return render(request=request,template_name="blog.html")
+# def blog_page(request):
+#     return render(request=request,template_name="blog.html")
 
 def category_page(request):
     return render(request=request,template_name="category.html")
