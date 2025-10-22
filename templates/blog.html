@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% load hitcount_tags %}
 
   <!-- ================ start banner area ================= -->	
   <section class="blog-banner-area" id="blog">
@@ -97,7 +98,7 @@
                                           </a>
                                       </li>
                                       <li>
-                                          <a href="#">1.2M Views
+                                          <a href="#">{{blog.hit_count.hits}} Views
                                               <i class="lnr lnr-eye"></i>
                                           </a>
                                       </li>
@@ -113,11 +114,11 @@
                               <div class="blog_post">
                                   <img src="{{blog.image.url}}" alt="">
                                   <div class="blog_details">
-                                      <a href="single-blog.html">
+                                      <a href="{% url 'blog-detail-view' blog.pk %}">
                                           <h2>{{blog.title}}</h2>
                                       </a>
                                       <p>{{blog.content|truncatewords:50}}</p>
-                                      <a class="button button-blog" href="single-blog.html">View More</a>
+                                      <a class="button button-blog" href="{% url 'blog-detail-view' blog.pk %}">View More</a>
                                   </div>
                               </div>
                           </div>

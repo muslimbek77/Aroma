@@ -1,5 +1,8 @@
 from django.db import models
 from account.models import User
+from hitcount.models import HitCountMixin, HitCount
+from django.contrib.contenttypes.fields import GenericRelation
+
 
 
 class BlogCategory(models.Model):
@@ -12,7 +15,7 @@ class BlogCategory(models.Model):
 
     def __str__(self) -> str:
         return self.name
-class BlogPost(models.Model):
+class BlogPost(models.Model,HitCountMixin):
     author = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True,
                                related_name="posts")
     title = models.CharField(max_length=255)
@@ -21,6 +24,11 @@ class BlogPost(models.Model):
     image =  models.ImageField(upload_to="Images/blogs/")
     created_at = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(BlogCategory,on_delete=models.CASCADE,related_name="posts")
+    hit_count_generic = GenericRelation(
+        HitCount,
+        object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation'
+    )
     class Meta:
         verbose_name = "Blog Post"
         verbose_name_plural = "Blog Posts"

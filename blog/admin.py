@@ -10,6 +10,7 @@ admin.site.register(BlogComment)
 @admin.register(BlogPost)
 class PlogPostAdmin(admin.ModelAdmin):
     list_display = ["title","author","img"]
+    prepopulated_fields = {'slug': ('title',)}
     search_fields = ["title"]
     list_filter = ["author"]
 
