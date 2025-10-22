@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,7 +43,8 @@ INSTALLED_APPS = [
     'account',
     'blog',
     'order',
-    'product'
+    'product',
+    'hitcount',
 ]
 
 MIDDLEWARE = [
